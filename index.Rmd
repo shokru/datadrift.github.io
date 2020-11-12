@@ -1,0 +1,22 @@
+
+<head>
+<meta charset="UTF-8">
+<meta name="data drift technologies"/>
+</head>
+
+
+---
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+
+<body>
+<center>
+<img src="images/data_drift_logo.svg" style="width:60%; border:0px solid; margin-right: 20px" align="center">
+
+<test>
+decipher the trends
+</test>
+</center>
+</body>
