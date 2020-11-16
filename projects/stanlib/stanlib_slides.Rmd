@@ -182,7 +182,7 @@ Maybe not...
 ---
 # Illustrating nonlinearity with many features
 
-A simple decision tree.
+A simple decision tree. Size matters... conditionally!
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="600px", fig.align='center'}
 knitr::include_graphics("trees.png")
