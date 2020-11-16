@@ -1,6 +1,15 @@
+:root {
+  /* Colors */
+  --background-color: #FFFFFF;
+}
+
 .title-slide h1 {
   color: #3A414B;
   font-size: 80px
+}
+
+html {
+   background-color: #FFFFFF
 }
 
 .blue {
@@ -21,13 +30,17 @@
 }
 
 .remark-slide-content {
-  background-color: #FAFAFA;
+  background-color: #FFFFFF;
   border-top: 80px solid #3A414B;
   font-size: 20px;
   font-weight: 300;
   line-height: 1.5;
   margin-left: -50px;
   margin-right: -50px
+}
+
+.white-slide {
+  background-color: #FFFFFF;
 }
 
 .bib {
