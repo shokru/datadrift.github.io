@@ -56,9 +56,10 @@ padding: 1em 4em 1em 4em;
 
 ---
 # Machine Learning (ML) for trading: why?
-
+&lt;div style="width: 100%;float: bottom;margin-top:-10px;margin-bottom: 50px;"&gt; 
 .font110[
 1. Because .bluen[**we can**] (computer power, data availability, software democratization (open source!), and academic maturity).
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
 &lt;img src="logos.svg" width="450px" style="display: block; margin: auto;" /&gt;
 2. Because it's **fancy** (it makes great marketing pitches because people like .bluen[seeming sophistication]).  
 &lt;img src="ai.png" width="500px" style="display: block; margin: auto;" /&gt;
@@ -156,7 +157,7 @@ This is related to the so-called **size premium** (or anomaly).
 ---
 # Generalizations
 
-Extensions include:         
+**Extensions** include:         
 - adding more characteristics (accounting ratios, risk, sentiment, .bluen[ESG scores], etc.);      
 - going beyond linear forms (that where the ML kicks in);    
 - reinforcing conditionality (ex: via macro indicators).
@@ -230,7 +231,7 @@ Second configuration: overwhelming noise (more realistic).
 
 ---
 # Second issue: changing environments (3/4)
-
+&lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 30px;"&gt; 
 &lt;img src="scheme.svg" width="770px" style="display: block; margin: auto;" /&gt;
 
 
@@ -246,9 +247,10 @@ Any **solutions**?
 
 ---
 # Third isse: algorithmic overfitting (1/2)
-
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
 **Sophisticated** models `\(\neq\)` better. (exaggerated version below)
 
+&lt;div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"&gt; 
 &lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -263,9 +265,9 @@ Some **solutions** to overfitting:
 ---
 # Fourth issue: backtest overfitting (1/4)
 
-Models should be **dynamic** - even in backtests!
+Quant/Systematic models should be **dynamic** - even in backtests!
 
-&lt;img src="scheme2.svg" width="970px" style="display: block; margin: auto;" /&gt;
+&lt;img src="scheme2.svg" width="990px" style="display: block; margin: auto;" /&gt;
 
 ---
 # Fourth issue: backtest overfitting (2/4)
@@ -293,16 +295,16 @@ A rule of thumb: take the Sharpe ratio of the best strat and .bluen[divide it by
 This relates to a crisis of .bluen[reproducibility]:
 
 - Academic research is plagued by the "*publish or perish*" paradigm (with a strong bias towards positive results).    
-- Likewise, money managers are pressured to craft **winning strategies**, but can only backtest on past data.
+- Likewise, money managers are pressured to craft **winning strategies**, but can only backtest on past data + lottery strats.
 
 `\(\rightarrow\)` we are pushed towards **false positives**. We so badly want to find recipes that succeed, that we end up forgetting the framework in which we work. Often, the best strategies perform well by chance! (one lucky random trajectory of the world)
 
 ---
 # Fifth issue: trust
-
-Can I understand my model?
-
-&lt;img src="XAI.svg" width="670px" style="display: block; margin: auto;" /&gt;
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
+Can I understand a complex model?
+&lt;div style="width: 100%;float: bottom;margin-top:5px;margin-bottom: 30px;"&gt; 
+&lt;img src="XAI.svg" width="710px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -324,8 +326,8 @@ padding: 1em 4em 1em 4em;
 # Going further: the book!
 
 It is located at http://www.mlfactor.com.    
-The material can be accessed at https://github.com/shokru/mlfactor.github.io/tree/master/material    
-It includes a reasonably sized dataset &amp; all the R codes (Python soon to come). .bluen[Nothing will replace practice]!    
+The **material** can be accessed at https://github.com/shokru/mlfactor.github.io/tree/master/material    
+It includes a reasonably sized dataset &amp; all the R codes (Python soon to come). .bluen[Nothing will replace **practice**]!    
 
 If you want a review of recent advances in ML &amp; econometrics in financial economics, have a look at my html [presentation](https://www.gcoqueret.com/files/AAP/AAP.html)
 
