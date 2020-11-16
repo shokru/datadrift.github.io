@@ -44,7 +44,7 @@ padding: 1em 4em 1em 4em;
 
 
 - **task automation** (ex: reading/summarizing, or writing reports)    
-- **customer relationship managment** (ex: chatbots, churn minimization)   
+- **customer relationship managment** (ex: chatbots, churn minimization for banks and insurance companies)   
 - **fraud detection** (ex: credit card hacking)    
 - **credit scoring** (for firms & individuals)    
 - **asset allocation** (return prediction, risk management... ) $\hspace{25mm}$   $\uparrow$ **.bluen[this is the topic of these slides]**
@@ -53,20 +53,21 @@ padding: 1em 4em 1em 4em;
 
 ---
 # Machine Learning (ML) for trading: why?
-<div style="width: 100%;float: bottom;margin-top:-10px;margin-bottom: 50px;"> 
-.font110[
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+.font100[
 1. Because .bluen[**we can**] (computer power, data availability, software democratization (open source!), and academic maturity).
-<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="450px", fig.align='center'}
 knitr::include_graphics("logos.svg")
 ```
-2. Because it's **fancy** (it makes great marketing pitches because people like .bluen[seeming sophistication]).  
+2. Because it's **fancy** (it makes great marketing pitches because people like .bluen[seeming sophistication]). 
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="500px", fig.align='center'}
 knitr::include_graphics("ai.png")
 ```
 3. Because it **works** (well... it depends - more on that soon).
 ]
-
+ 
 
 ---
 # What is AI / ML?
@@ -83,7 +84,7 @@ $\rightarrow$ in practice, ML is very efficient for **marketers**.
 # ML for trading: a tale of frequencies
 
 .font90[The type of ML algo & data used depends on the .bluen[rebalancing rythm]:]  
-- **high-frequency**: intraday trades (~mins-ms). The volume of data comes from **chronology** and the aim is to unveil recent patterns in the **microstructure** process (order book). Usually, the focus is on a limited number of assets (ex: futures, indices, forex) and a limited number of indicators (prices).   
+- **high-frequency**: intraday trades (mins $\rightarrow$ ms). The volume of data comes from **chronology** and the aim is to unveil recent patterns in the **microstructure** process (order book). Usually, the focus is on a limited number of assets (ex: futures, indices, forex) and a limited number of indicators (prices).   
 - **low frequency**: monthly/quarterly/annual rebalancing. The volume comes from **cross-sections**: width of assets (hundreds/thousands of stocks, bond issuers), and width of attributes (hundreds).
 
 
@@ -101,11 +102,16 @@ The key word is *different*: in what ways are companies different? $\rightarrow$
 
 ---
 # Data procurement: an enormous offer
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
 knitr::include_graphics("neudata.png")
 ```
 
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+
+See also: https://alternativedata.org/data-providers/
 
 ---
 
@@ -128,6 +134,7 @@ class: animated, fadeInRight
 
 
 # The equation .grey[.font60[( just one, but it's important to understand it)]]
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
 
 .bib[
 Here it goes*:
@@ -139,22 +146,26 @@ $$r_i= f(\textbf{x}_i) + e_i,$$
 - $e_i$ is the error made by the model ( $f(\textbf{x}_i)$ )
 
 .font90[**Note**: it a **panel** model:] $f$ is the same for all stocks .font60[(the model learns from the cross-section.)]
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
 
-*.grey[.font70[It's the simple version: it can (should?) be made time-dependent. ]]
+*.grey[.font80[It's the simple version: it can (should?) be made time-dependent. ]]
 ]
 
 ---
 # A simple example
 
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
 
 Assume
 
 $$r_i = a + b*\text{Size}_i + e_i,$$
 where Size is a **proxy** of the size of the company (e.g. market capitalization - rescaled/normalized/standardized).   
 If $b>0$: large firms earn higher returns (according to the model).   
-$\rightarrow$ Usually, it is considered that $b<0$: small firms have more potential for **growth**, and thus experience enhanced performance (more on that soon).   
+$\rightarrow$ Usually, it is considered that, **on the long run**, $b<0$: small firms have more potential for **growth**, and thus experience enhanced performance (more on that soon).   
 This is related to the so-called **size premium** (or anomaly).   
-.font70[.grey[There are many anomalies: value, momentum, low risk (?), profitability, etc.]]
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
+
+.font80[.grey[Remember, there are many anomalies: value, momentum, low risk (?), profitability, ..]]
 
 
 ---
@@ -163,7 +174,7 @@ This is related to the so-called **size premium** (or anomaly).
 **Extensions** include:         
 - adding more characteristics (accounting ratios, risk, sentiment, .bluen[ESG scores], etc.);      
 - going beyond linear forms (that where the ML kicks in);    
-- reinforcing conditionality (ex: via macro indicators).
+- Enforcing **conditionality** (ex: via macro-economic indicators).
 
 **BUT**! You should always be wary about the error terms $e_i$! Gaussian? Independent (in time, in the cross-section)?   
 Maybe not...
@@ -304,7 +315,7 @@ knitr::include_graphics("scheme.svg")
 
 Any **solutions**?
 
-- first, make sure your models evolve & react to **new data**! One natural inclination is to fix the model once & for all... that's a bad idea. Updating is key (though the details are far from obvious).  
+- first, make sure your models evolve & react to **new data**! One natural inclination is to fix the model once & for all... that's a bad idea. **Updating** is key (though the details are far from obvious).  
 - second, think broadly. Does the **macroeconomy** help explain some variations? Stocks do not move out of nowhere... The .bluen[credit spread] may matter for the **Size** factor. There are many ways to integrate macro indicators in predictive models.
 
 
@@ -341,14 +352,16 @@ z1 %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F, color = "r
 
 Some **solutions** to overfitting:   
 - often, they are technical and algorithm-dependent. Penalization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
-- one heuristic tip is: .bluen[avoid complex models]!   
-- if you like sophistication, invest time in robustness checks (HP, time windows)
+- one heuristic tip is (surprisingly): .bluen[in doubt, avoid complex models]!   
+- if you like sophistication, invest time in robustness checks & sensitivity analysis (HP, time windows)
 
 
 ---
 # Fourth issue: backtest overfitting (1/4)
 
 Quant/Systematic models should be **dynamic** - even in backtests!
+<div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
+
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
 knitr::include_graphics("scheme2.svg")
@@ -372,7 +385,7 @@ $\rightarrow$ In the end, this makes **200 options to build a strategy**.
 
 Is this choice truly the best? Will it work well in live trading (out-of-sample)? Probably not, because the strategy is optimized on only one dataset! .font70[.grey[In factor investing, artificial data is hard to generate.]]
 
-A rule of thumb: take the Sharpe ratio of the best strat and .bluen[divide it by two] to get a better estimate of what will happen.
+A rule of thumb: take the **Sharpe ratio** of the best strat and .bluen[divide it by two] to get a better estimate of what will happen.
 
 ---
 # Fourth issue: backtest overfitting (4/4)
@@ -425,7 +438,7 @@ Factor investing aims to explain or predict financial returns with .bluen[firms 
 
 People tend to focus on sophistication, which sometimes does add value, but requires a huge amount of expertise. Often it is preferable to spend more time on **simple approaches** & have an integrated understanding of the models. 
 
-One major topic I left out is **causality**. It's incredibly important, but personally, I think it's still out of reach in factor investing.  
+One major topic I left out is **causality**. It's incredibly important in ML, but personally, I think it's still out of reach in factor investing.  
 
 
 ---
@@ -445,11 +458,11 @@ knitr::include_graphics("quadrant2.svg")
 .font110[
 - **software** & **IT** (hardware) are relatively **cheap**.   
 - **data** *can* be **costly**.
-- .bluen[**human capital**] is **key**. Good quants are expensive, but more likely to deliver. Bad quants are cheaper... but may end up underperforming. 
+- .bluen[**human capital**] is **key**. Good quants are expensive, but more *likely* to deliver. Bad quants are cheaper... but may end up underperforming. 
 ]
 
 $\rightarrow$ **Time**, because it is scarce, is the most important resource.   
-Understanding the limits & weaknesses of backtests matters.
+**Understanding** the limits & weaknesses of models & backtests matters **A LOT**!
 
 
 ---
