@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2363 1418" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-77.9901,-74.249)">
+        <g transform="matrix(1,0,0,1,170.516,183.912)">
+            <g transform="matrix(1,0,0,1,102.811,168.399)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;">met</text>
+            </g>
+            <g transform="matrix(1,0,0,1,290.911,168.399)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;">hods</text>
+            </g>
+        </g>
+        <g transform="matrix(0.720755,0,0,0.724594,773.113,190.493)">
+            <path d="M173.089,238.601L173.089,1637.61L2166.68,1637.61" style="fill:none;stroke:black;stroke-width:11.85px;"/>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,2020.06,1401.69)">
+        <text x="0px" y="0px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:100px;">data</text>
+    </g>
+    <g transform="matrix(1.0281,0,0,0.817005,8.14428,-36.7389)">
+        <g transform="matrix(0.972668,0,0,1.22398,141.921,236.061)">
+            <path d="M665.028,65.001L698.6,135.954L631.456,135.954L665.028,65.001Z" style="stroke:rgb(235,235,235);stroke-width:0.5px;"/>
+        </g>
+        <g transform="matrix(1.46211,0,0,1.22398,-1147.89,44.9678)">
+            <rect x="799.186" y="349.472" width="1529.95" height="342.925" style="fill:rgb(0,180,226);fill-opacity:0.6;"/>
+        </g>
+        <g transform="matrix(1.46271,0,0,1.22398,-1146.5,640.156)">
+            <rect x="799.186" y="349.472" width="1529.95" height="342.925" style="fill:rgb(167,211,231);fill-opacity:0.6;"/>
+        </g>
+        <g transform="matrix(-1.78676e-16,1.22398,-0.972668,-2.24842e-16,2302.91,826.769)">
+            <path d="M665.028,65.001L698.6,135.954L631.456,135.954L665.028,65.001Z" style="stroke:rgb(235,235,235);stroke-width:0.5px;"/>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,889.743,-465.025)">
+        <g transform="matrix(1,0,0,1,-931.743,465.025)">
+            <rect x="928.888" y="21.025" width="630.333" height="1253.23" style="fill:rgb(250,236,185);fill-opacity:0.6;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-208.05,467.933)">
+            <rect x="928.888" y="21.025" width="630.333" height="1253.23" style="fill:rgb(252,229,30);fill-opacity:0.6;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,778.345,1407.37)">
+            <text x="22.188px" y="90.254px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">rare combination</text>
+        </g>
+        <g transform="matrix(1,0,0,1,870.454,878.529)">
+            <text x="-29.258px" y="95.261px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">state of the art</text>
+            <text x="-50.952px" y="157.224px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">(but hard &amp; risky)</text>
+        </g>
+        <g transform="matrix(1,0,0,1,75.3346,872.572)">
+            <text x="85.618px" y="96.676px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">ambitious</text>
+            <text x="38.89px" y="158.639px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">&amp; reasonable</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-516.995,14.7598)">
+        <text x="566.18px" y="416.152px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">Advanced methods</text>
+        <text x="1119.63px" y="416.152px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">:</text>
+        <text x="566.18px" y="478.115px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">machine learning</text>
+        <text x="566.18px" y="540.078px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">high dimensional stats</text>
+        <text x="566.18px" y="602.041px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">natural language process.</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-500.719,515.147)">
+        <text x="566.18px" y="416.152px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">T<tspan x="599.52px 622.869px " y="416.152px 416.152px ">ra</tspan>ditional methods</text>
+        <text x="1136.24px" y="416.152px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">:</text>
+        <text x="566.18px" y="478.115px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">simple stats</text>
+        <text x="566.18px" y="540.078px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">data mining</text>
+        <text x="566.18px" y="602.041px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">asset pricing v1.0</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-62.9729,-61.4324)">
+        <text x="1020.11px" y="191.142px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">T<tspan x="1053.45px 1076.8px " y="191.142px 191.142px ">ra</tspan>ditional data:</text>
+        <text x="1020.11px" y="253.105px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">accounting ﬁgures</text>
+    </g>
+    <g transform="matrix(1,0,0,1,-23.7865,5.62185)">
+        <text x="1022.31px" y="993.268px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">Old fashioned</text>
+        <text x="952.2px" y="1055.23px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">asset management</text>
+    </g>
+    <g transform="matrix(1,0,0,1,692.469,-95.9612)">
+        <text x="1020.11px" y="191.142px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:60px;">Alternative data:</text>
+        <text x="1020.11px" y="253.105px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">satelite imagery<tspan x="1435.83px " y="253.105px ">,</tspan></text>
+        <text x="1020.11px" y="315.068px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">credit card log,</text>
+        <text x="1020.11px" y="377.031px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:60px;">sentiment</text>
+    </g>
+</svg>
