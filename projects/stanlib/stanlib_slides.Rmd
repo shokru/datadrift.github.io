@@ -187,7 +187,7 @@ Maybe not...
 ---
 # Illustrating nonlinearity with many features
 
-A simple decision tree. Size matters... conditionally!
+A simple **decision tree**. Size matters... conditionally!
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="600px", fig.align='center'}
 knitr::include_graphics("trees.png")
@@ -396,7 +396,7 @@ A rule of thumb: take the **Sharpe ratio** of the best strat and .bluen[divide i
 ---
 # Fourth issue: backtest overfitting (4/4)
 
-This relates to a crisis of .bluen[reproducibility]:
+This relates to a crisis of .bluen[**reproducibility**]:
 
 - Academic research is plagued by the "*publish or perish*" paradigm (with a strong bias towards positive results).    
 - Likewise, money managers are pressured to craft **winning strategies**, but can only backtest on past data + lottery strats.
