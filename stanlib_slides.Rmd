@@ -1,0 +1,462 @@
+---
+title: "Machine Learning for Factor Investing"
+subtitle: "An overview"
+author: Guillaume Coqueret
+date: .font80[Stanlib **Friday** seminar] 2020-11-27
+output:
+  xaringan::moon_reader:
+    css: 
+    - metropolis
+    - metropolis-fonts
+    - "my-theme.css" 
+    #mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML"
+    - "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"  
+          # animation in transition, https://github.com/yihui/xaringan/issues/184
+    nature:
+        ratio: "16:9"
+---
+
+<!-- xaringan::inf_mr() -->
+
+```{r, warning = F, message = F, echo = F}
+library(tidyverse)
+library(lubridate)
+library(ggthemes)
+library(xaringanthemer)
+load("data_ml.RData")
+```
+
+
+class: inverse, center, middle, animated, fadeInRight
+
+
+<style type="text/css">
+.remark-slide-content {
+font-size: 32px;
+padding: 1em 4em 1em 4em;
+}
+</style>
+
+
+# Introduction
+
+---
+# Overview of AI use-cases in finance 
+
+
+- **task automation** (ex: reading/summarizing, or writing reports)     
+- **customer relationship managment** (ex: chatbots, churn minimization for banks and insurance companies)   
+- **fraud detection** (ex: credit card hacking)    
+- **credit scoring** (for firms & individuals)    
+- **asset allocation** (return prediction, risk management... ) $\hspace{25mm}$   $\uparrow$ **.bluen[this is the topic of these slides]**
+
+- ...option pricing?
+
+
+
+---
+# Machine Learning (ML) for trading: why?
+
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+
+.font90[
+1. Because .bluen[**we can**] (computer power, data availability, software democratization (open source!), and academic maturity).
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="450px", fig.align='center'}
+knitr::include_graphics("logos.svg")
+```
+2. Because it's **fancy** (it makes great marketing pitches because people are more convinced by .bluen[seeming sophistication]). 
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="900px", fig.align='center'}
+knitr::include_graphics("headlines.png")
+```
+3. Because it **works** (well... it depends - more on that soon).
+]
+
+
+---
+# ML for trading: a tale of frequencies
+
+.font90[The type of ML algo & data used depends on the .bluen[**rebalancing rythm**]:]  
+- **high-frequency**: intraday trades (mins $\rightarrow$ ms). The volume of data comes from **chronology** and the aim is to unveil recent patterns in the **microstructure** process (order book). Usually, the focus is on a limited number of assets (ex: futures, indices, forex) and a limited number of indicators (prices, volumes).    
+- **low frequency**: monthly/quarterly/annual rebalancing. The volume comes from **cross-sections**: width of assets (hundreds/thousands of stocks, bond issuers), and width of attributes (hundreds).
+
+
+---
+# Low frequency trading with factor investing
+
+In **financial economics**, one central topic is to explain the profitability of firms, that is, why do different firms experience different returns.  
+
+The key word is *different*: in what ways are companies different? $\rightarrow$ we need to **characterize** them. To do so, we resort to .bluen[attributes]:  
+* **size** (market cap), 
+* **value** (accounting ratios), 
+* **momentum** (past performance), 
+* **risk** (volatility),  
+* etc. 
+
+---
+# Data procurement: an enormous offer
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
+knitr::include_graphics("neudata.png")
+```
+
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+
+See also: https://alternativedata.org/data-providers/
+
+---
+
+class: inverse, center, middle, animated, fadeInRight
+
+
+<style type="text/css">
+.remark-slide-content {
+font-size: 32px;
+padding: 1em 4em 1em 4em;
+}
+</style>
+
+
+# Characteristics-based models: a primer
+
+
+---
+class: animated, fadeInRight
+
+
+# The equation .grey[.font60[( just one, but it's important to understand it)]]
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+.bib[
+Here it goes*:
+$$r_i= f(\textbf{x}_i) + e_i,$$
+
+- $r_i$ is the (future) return of firm $i$ - or any other proxy for **performance**   
+- $f$ is some possibly complex function,   
+- $\textbf{x}_i$ are the .bluen[firms characteristics] (market cap, earning/debt ratios, past returns, etc.),   
+- $e_i$ is the error made by the model ( $f(\textbf{x}_i)$ )
+
+.font90[**Note**: it a **panel** model:] $f$ is the same for all stocks .font60[(the model learns from the cross-section.)]
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
+
+*.grey[.font80[It's the simple version: it can (should?) be made time-dependent. ]]
+]
+
+---
+# A simple example
+
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+Assume
+
+$$r_i = a + b*\text{Size}_i + e_i,$$
+where Size is a **proxy** of the size of the company (e.g. market capitalization - rescaled/normalized/standardized).   
+If $b>0$: large firms earn higher returns (according to the model).   
+$\rightarrow$ Usually, it is considered that, **on the long run**, $b<0$: small firms have more potential for **growth**, and thus experience enhanced performance (more on that soon).   
+This is related to the so-called **size premium** (or anomaly).   
+<div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
+
+.font80[.grey[Remember, there are many anomalies: value, momentum, low risk (?), profitability, ..]]
+
+
+---
+# Generalizations
+
+**Extensions** include:         
+- adding more characteristics (accounting ratios, risk, sentiment, .bluen[ESG scores], etc.);      
+- going beyond linear forms (that where the ML kicks in);    
+- Enforcing **conditionality** (ex: via macro-economic indicators).
+
+**BUT**! You should always be wary about the error terms $e_i$! Gaussian? Independent (in time, in the cross-section)?   
+Maybe not...
+
+---
+# Illustrating nonlinearity with many features
+
+A simple **decision tree**. Size matters... conditionally!
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="600px", fig.align='center'}
+knitr::include_graphics("trees.png")
+```
+
+
+---
+
+class: inverse, center, middle, animated, fadeInRight
+
+
+<style type="text/css">
+.remark-slide-content {
+font-size: 32px;
+padding: 1em 4em 1em 4em;
+}
+</style>
+
+
+# Factor models: pitfalls & solutions
+
+
+---
+# Factor & Quant investing: beware!
+<div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="700px", fig.align='center'}
+knitr::include_graphics("FT2.png")
+
+knitr::include_graphics("JPM.png")
+
+knitr::include_graphics("FT.png")
+```
+
+
+
+
+
+
+---
+# First issue: changing environments (1/3)
+.font90[Average returns, volatility, factor loadings, they all] **change**! .font80[(No arbitrage..)]
+
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+
+```{r, warning = F, message = F, echo = F, fig.align='center', fig.width=12, fig.retina = 3}
+set.seed(42)
+n_points <- 10^3
+
+data_ml %>%
+  mutate(year = as.factor(year(date))) %>% 
+  filter(year %in% c(2007,2008,2009)) %>%
+  #group_by(date) %>%
+  #mutate(size = if_else(Mkt_Cap_12M_Usd > median(Mkt_Cap_12M_Usd), "Large", "Small")) %>%
+  ggplot(aes(x = Mkt_Cap_12M_Usd, y = R1M_Usd, color = year)) +
+  geom_point(size = 0.5, alpha = 0.5) + geom_smooth(size= 1.5, method = "lm", se = F) +
+  theme_economist() + 
+  theme(text = element_text(size=24), aspect.ratio = 0.4) + xlab("Market Capitalization (score)") +
+  coord_cartesian(xlim=c(0,1), ylim = c(-0.2,0.2)) +
+  ylab("Return")
+  
+```
+
+
+---
+# First issue: changing environments (2/3)
+
+**value** minus **growth** (long-short) portfolios (from the book): 
+
+```{r, message = F, warning = F, echo = F, fig.align='center', fig.width = 10, fig.height = 6.5}
+data_ml %>%
+  mutate(year = year(date)) %>%
+  group_by(date) %>%
+  mutate(value = Pb < median(Pb)) %>%
+  group_by(year, value) %>%
+  summarise(ret = mean(R1M_Usd)) %>% 
+  pivot_wider(names_from = "value", values_from = "ret") %>%
+  mutate(ret_ls = 12*( `FALSE`-`TRUE`)) %>%
+  ggplot(aes(x = year, y = ret_ls)) + geom_col() +
+  theme_wsj() +
+  theme(text=element_text(size=26))
+```
+
+---
+# First issue: changing environments (3/3)
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 30px;"> 
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="770px", fig.align='center'}
+knitr::include_graphics("scheme.svg")
+```
+
+
+---
+# Changing environments: **solutions**! 
+
+Some tricks to handle **data drifting**:
+
+1. make sure your models evolve & react to **.bluen[new data]**! Static models are limited. **.bluen[Updating]** is key.  
+2. the **.bluen[macroeconomy]** may explain some variations.   
+**ex**: the credit spread may matter for the **size** factor. There are many ways to integrate macro indicators in predictive models.   
+3. seek **.bluen[invariance]**, at least in distributions.    
+4. rely on **.bluen[memory]**. Persistence in time-series can improve out-of-sample performance.
+
+
+---
+# Second issue: overfitting 
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+
+.font90[
+- **algorithmic overfitting**: when the models sticks too close to past patterns and is "*surprised*" when facing new patterns.  
+- **backtest overfitting**: when a quant tries tons of strategies until one seems ok (ex: passes some Sharpe ratio threshold). This is incredibly widespread! Both in money management & academia. We are all under pressure for **good results**! $\rightarrow$ this leads to **p-hacking** & false positives!
+]
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="830px", fig.align='center'}
+knitr::include_graphics("Wired.png")
+knitr::include_graphics("ideas.png")
+```
+
+
+
+
+---
+# Algorithmic overfitting: **solutions** 
+
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
+knitr::include_graphics("overfit.png")
+```
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+
+
+- often, solutions are technical and algorithm-dependent. Penalization/regularization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
+- if you like **sophistication**, invest time in robustness checks & sensitivity analysis (HP, time windows). But do not always go for the best parameters!
+- one heuristic tip is (surprisingly): .bluen[in doubt, avoid complex models]!   
+
+---
+# Backtest overfitting: **solutions**
+
+0. Work out-of-sample. $\rightarrow$ rolling windows.
+1. Quant/Systematic models should be **dynamic** in backtests!
+2. Be extra careful to forward-looking **leakages**.
+<div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
+
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
+knitr::include_graphics("scheme2.svg")
+```
+
+
+
+
+
+
+---
+# Backtest overfitting: **solutions**
+
+**Deflated Sharpe ratios**: take into account how many strategies you test!
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
+knitr::include_graphics("JPM2.png")
+```
+
+$+$ the **false strategy** theorem.
+
+---
+# Third issue: trust
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+Can I understand a complex model? $\rightarrow$ **XAI** (explainable AI).
+<div style="width: 100%;float: bottom;margin-top:5px;margin-bottom: 30px;"> 
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="710px", fig.align='center'}
+knitr::include_graphics("XAI.svg")
+```
+
+---
+
+class: inverse, center, middle, animated, fadeInRight
+
+
+<style type="text/css">
+.remark-slide-content {
+font-size: 32px;
+padding: 1em 4em 1em 4em;
+}
+</style>
+
+
+# Final words
+
+
+---
+# Going further: the book!
+
+It is located at http://www.mlfactor.com.    
+The **material** can be accessed at https://github.com/shokru/mlfactor.github.io/tree/master/material    
+It includes a reasonably sized dataset & all the R codes (Python soon to come). .bluen[Nothing will replace **practice**]!    
+
+If you want a review of recent advances in ML & econometrics in financial economics, have a look at my html [presentation](https://www.gcoqueret.com/files/AAP/AAP.html)
+
+---
+# Wrap up: key takeaways
+
+**Factor investing**:    
+
+- **originally**: use a few characteristics to **.bluen[explain]** returns.   
+- **now**: extract a maximum of data to **.bluen[predict]** returns.
+
+Combining factor investing & ML is not easy, .grey[and even great names like Renaissance or Two-Sigma sometimes underperform].  
+
+.font90[**BUT**: there is also an **opportunity cost** for **not joining** the bandwagon! 
+Basically, there are two trending "product lines" currently: **ML** & .bluen[ESG].]
+
+Funds can propose **both** types to clients. $\rightarrow$ .bluen[diversification]!
+
+
+
+
+---
+# Where to go from now
+<!-- # Going forward & recommendations --> 
+Determine a position on the **quadrant**:
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="790px", fig.align='center'}
+knitr::include_graphics("quadrant2.svg")
+```
+
+
+
+---
+# Where to spend money?
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+
+.font110[
+- **software** & **IT** (hardware) are relatively **cheap**.   
+- **data** *can* be **costly**.
+- .bluen[**human capital**] is **key**. As for competences:  
+]
+<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="440px", fig.align='center'}
+knitr::include_graphics("venn.svg")
+```
+<div style="width: 100%;float: bottom;margin-top:-5px;margin-bottom: 50px;"> 
+
+<!--$\rightarrow$ **Time**, because it is scarce, is the most important resource.  --> 
+A genuine **understanding** models & backtests matters **A LOT**!
+
+
+---
+
+<center>
+.large[THANK YOU!]
+<br>
+<br>
+<br>
+.bluen[**What are your questions? **]
+</center>
+
+
+---
+# Illustration of algorithmic overfitting
+
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+**Sophisticated** models $\neq$ better. (exaggerated version below)
+
+<div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
+```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 11, fig.height = 6.5 }
+set.seed(42)
+n_points <- 150
+x <- runif(n_points)
+y <- -x/20 + rnorm(n_points, mean = 0, sd = 0.1) + 0.1
+z <- bind_cols(x = x, y = y) 
+z0 <- data.frame(x = rep(0.5, 10), y = rep(0.8, 10))
+z00 <- data.frame(x = rep(0.52, 15), y = rep(0.78, 15))
+z1 <- bind_rows(z, z0, z00)
+z1 %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F, color = "red") +
+  theme_economist() +
+    theme(text = element_text(size=24), aspect.ratio = 0.6, legend.position = c(0.5, 0.15)) +
+    xlab("Size") + ylab("Future return") +
+    geom_smooth(data = z, se = F) +
+    annotate("rect", xmin = 0.48, xmax = 0.54, ymin = 0.7, ymax = 0.9, alpha = .25, color = "black", fill = "black") +
+    annotate("text", x = 0.60, y = 0.8, label = "Outliers", color = "black", size = 6) +
+    annotate("segment", x = 0.5, xend = 0.5, y = 0.08, yend = 0.38, colour = "#656666", size = 1.5, arrow=arrow()) +
+    annotate("text", x = 0.48, y = 0.43, label = "A few points push the complex model in a potentially wrong direction", color = "black", size = 6)
+```
