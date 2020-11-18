@@ -28,7 +28,6 @@ class: center, middle, inverse, title-slide
 
 
 
-
 class: inverse, center, middle, animated, fadeInRight
 
 
@@ -61,27 +60,16 @@ padding: 1em 4em 1em 4em;
 
 &lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"&gt; 
 
-.font100[
+.font90[
 1. Because .bluen[**we can**] (computer power, data availability, software democratization (open source!), and academic maturity).
 &lt;div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"&gt; 
 &lt;img src="logos.svg" width="450px" style="display: block; margin: auto;" /&gt;
-2. Because it's **fancy** (it makes great marketing pitches because people are more convinced .bluen[seeming sophistication]). 
+2. Because it's **fancy** (it makes great marketing pitches because people are more convinced by .bluen[seeming sophistication]). 
 &lt;div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"&gt; 
-&lt;img src="ai.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="headlines.png" width="900px" style="display: block; margin: auto;" /&gt;
 3. Because it **works** (well... it depends - more on that soon).
 ]
 
-
----
-# What is AI / ML?
-
-- AI refers to tools (algos, robots) which are aimed at **mimicking human cognitive functions** .font90[(and, subsequently, motor functions)].
-- One obvious application of AI is **task automation**.   
-- Nowadays, building intelligent systems requires **huge amounts of data** (which sometimes can be simulated).   
-- ML (a subfield of AI) is intended to "make sense" (i.e., **detect patterns**) of these big datasets (akin to data mining)    
-- If these patterns are .bluen[*genuine*], they can be incredibly valuable (more on that soon).
-
-`\(\rightarrow\)` in practice, ML is very efficient for **marketers**.
 
 ---
 # ML for trading: a tale of frequencies
@@ -201,126 +189,104 @@ padding: 1em 4em 1em 4em;
 &lt;/style&gt;
 
 
-# Factor models: limitations
+# Factor models: pitfalls &amp; solutions
 
 
 ---
-# .font90[Factor &amp; Quant investing] `\(\neq\)` .font90[guaranteed success]
+# Factor &amp; Quant investing: beware!
 &lt;div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"&gt; 
 
-&lt;img src="FT.png" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="JPM.png" width="700px" style="display: block; margin: auto;" /&gt;
+&lt;img src="FT2.png" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="JPM.png" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="FT.png" width="700px" style="display: block; margin: auto;" /&gt;
+
+
+
 
 
 
 ---
-# First issue: noise! (1/2)
-
-Optimal case: low noise (stylized graph).
+# First issue: changing environments (1/3)
+.font90[Average returns, volatility, factor loadings, they all] **change**! .font80[(No arbitrage..)]
 
 &lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
-# First issue: noise! (2/2)
-
-Second configuration: overwhelming noise (more realistic).
-
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
-
-.font70[In practice, things are much more complicated (many predictors, nonlinearities, etc.)]
-
-
-
----
-# Second issue: changing environments (1/4)
-.font90[Average returns, volatility, factor loadings, they all] **change**! .font80[(No arbitrage..)]
-
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
-
-
----
-# Second issue: changing environments (2/4)
+# First issue: changing environments (2/3)
 
 **value** minus **growth** (long-short) portfolios:
 
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-# Second issue: changing environments (3/4)
+# First issue: changing environments (3/3)
 &lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 30px;"&gt; 
 &lt;img src="scheme.svg" width="770px" style="display: block; margin: auto;" /&gt;
 
 
 ---
-# Second issue: changing environments (4/4)
+# Changing environments: **solutions**! 
 
+Some tricks to handle **data drifting**:
 
-Any **solutions**?
-
-- first, make sure your models evolve &amp; react to **new data**! One natural inclination is to fix the model once &amp; for all... that's a bad idea. **Updating** is key (though the details are far from obvious).  
-- second, think broadly. Does the **macroeconomy** help explain some variations? Stocks do not move out of nowhere... The .bluen[credit spread] may matter for the **Size** factor. There are many ways to integrate macro indicators in predictive models.
+1. make sure your models evolve &amp; react to **.bluen[new data]**! Static models are limited. **.bluen[Updating]** is key.  
+2. the **.bluen[macroeconomy]** may explain some variations.   
+**ex**: the credit spread may matter for the **size** factor. There are many ways to integrate macro indicators in predictive models.   
+3. seek **.bluen[invariance]**, at least in distributions.    
+4. rely on **.bluen[memory]**. Persistence in time-series can improve out-of-sample performance.
 
 
 ---
-# Third isse: algorithmic overfitting (1/2)
-&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
-**Sophisticated** models `\(\neq\)` better. (exaggerated version below)
+# Second issue: overfitting 
+&lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"&gt; 
 
-&lt;div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"&gt; 
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+.font90[
+- **algorithmic overfitting**: when the models sticks too close to past patterns and is "*surprised*" when facing new patterns.  
+- **backtest overfitting**: when a quant tries tons of strategies until one seems ok (ex: passes some Sharpe ratio threshold). This is incredibly widespread! Both in money management &amp; academia. We are all under pressure for **good results**! `\(\rightarrow\)` this leads to **p-hacking** &amp; false positives!
+]
+
+&lt;img src="Wired.png" width="830px" style="display: block; margin: auto;" /&gt;&lt;img src="ideas.png" width="830px" style="display: block; margin: auto;" /&gt;
+
+
+
 
 ---
-# Third isse: algorithmic overfitting (2/2)
+# Algorithmic overfitting: **solutions** 
 
-Some **solutions** to overfitting:   
-- often, they are technical and algorithm-dependent. Penalization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
+
+- often, solutions are technical and algorithm-dependent. Penalization/regularization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
+- if you like sophistication, invest time in robustness checks &amp; sensitivity analysis (HP, time windows). Do not always go for the best parameters!
 - one heuristic tip is (surprisingly): .bluen[in doubt, avoid complex models]!   
-- if you like sophistication, invest time in robustness checks &amp; sensitivity analysis (HP, time windows)
 
 
 ---
-# Fourth issue: backtest overfitting (1/4)
+# Backtest overfitting: **solutions**
 
-Quant/Systematic models should be **dynamic** - even in backtests!
+0. Work out-of-sample. `\(\rightarrow\)` rolling windows.
+1. Quant/Systematic models should be **dynamic** in backtests!
+2. Be extra careful to forward-looking **leakages**.
 &lt;div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"&gt; 
 
 
 &lt;img src="scheme2.svg" width="990px" style="display: block; margin: auto;" /&gt;
 
----
-# Fourth issue: backtest overfitting (2/4)
-
-.font90[Imagine a **quant fund manager** with 5 modelling engines] (.font80[Random Forests, Boosted Trees, Simple Neural Nets, Recurrent NN, Ensemble]).   
-.font90[Say, she wishes to test 10 HP values for each family of models (that's a pretty small number to evaluate sensitivity).  
-This makes 50 combinations. Then, assume there are 4 ways to translate predictive signals into portfolio weights (equal weights of best forecasts, minimum variance, maximum Sharpe ratio, equal risk contribution).]  
-`\(\rightarrow\)` In the end, this makes **200 options to build a strategy**. 
 
 
-.font90[.grey[And I haven't even mentioned data pre-processing.]] 😉
+
+
 
 ---
-# Fourth issue backtest overfitting (3/4)
+# Backtest overfitting: **solutions**
 
-.font90[So the fund manager is going to **backtest** these strategies, that is, test them on data. Sadly, she only has past data at her disposal... And in the end, she is going to pick the one that works best (after robustness checks, sensitivity analyses, etc.)]
+**Deflated Sharpe ratios**: take into account how many strategies you test!
 
-Is this choice truly the best? Will it work well in live trading (out-of-sample)? Probably not, because the strategy is optimized on only one dataset! .font70[.grey[In factor investing, artificial data is hard to generate.]]
+&lt;img src="JPM2.png" width="990px" style="display: block; margin: auto;" /&gt;
 
-A rule of thumb: take the **Sharpe ratio** of the best strat and .bluen[divide it by two] to get a better estimate of what will happen.
-
----
-# Fourth issue: backtest overfitting (4/4)
-
-This relates to a crisis of .bluen[**reproducibility**]:
-
-- Academic research is plagued by the "*publish or perish*" paradigm (with a strong bias towards positive results).    
-- Likewise, money managers are pressured to craft **winning strategies**, but can only backtest on past data + lottery strats.
-
-`\(\rightarrow\)` we are pushed towards **false positives**. We so badly want to find recipes that succeed, that we end up forgetting the framework in which we work. Often, the best strategies perform well by chance! (one lucky random trajectory of the world)
+`\(+\)` the **false strategy** theorem.
 
 ---
-# Fifth issue: trust
+# Third issue: trust
 &lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
-Can I understand a complex model?
+Can I understand a complex model? `\(\rightarrow\)` **XAI** (explainable AI).
 &lt;div style="width: 100%;float: bottom;margin-top:5px;margin-bottom: 30px;"&gt; 
 &lt;img src="XAI.svg" width="710px" style="display: block; margin: auto;" /&gt;
 
@@ -352,7 +318,9 @@ If you want a review of recent advances in ML &amp; econometrics in financial ec
 ---
 # Wrap up: key takeaways
 
-Factor investing aims to explain or predict financial returns with .bluen[firms characteristics]. 
+**Factor investing**:    
+- **originally**: use a few characteristics to **.bluen[explain]** returns.   
+- **now**: extract a maximum of data to **.bluen[predict]** returns.
 
 People tend to focus on sophistication, which sometimes does add value, but requires a huge amount of expertise. Often it is preferable to spend more time on **simple approaches** &amp; have an integrated understanding of the models. 
 
@@ -370,15 +338,20 @@ Determine a position on the **quadrant**:
 
 ---
 # Where to spend money?
+&lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"&gt; 
 
 .font110[
 - **software** &amp; **IT** (hardware) are relatively **cheap**.   
 - **data** *can* be **costly**.
-- .bluen[**human capital**] is **key**. Good quants are expensive, but more *likely* to deliver. Bad quants are cheaper... but may end up underperforming. 
+- .bluen[**human capital**] is **key**. As for competences:  
 ]
+&lt;div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"&gt; 
 
-`\(\rightarrow\)` **Time**, because it is scarce, is the most important resource.   
-**Understanding** the limits &amp; weaknesses of models &amp; backtests matters **A LOT**!
+&lt;img src="venn.svg" width="440px" style="display: block; margin: auto;" /&gt;
+&lt;div style="width: 100%;float: bottom;margin-top:-5px;margin-bottom: 50px;"&gt; 
+
+&lt;!--$\rightarrow$ **Time**, because it is scarce, is the most important resource.  --&gt; 
+Genuine **understanding** models &amp; backtests matters **A LOT**!
 
 
 ---
@@ -390,6 +363,16 @@ Determine a position on the **quadrant**:
 &lt;br&gt;
 .bluen[**What are your questions? **]
 &lt;/center&gt;
+
+
+---
+# Illustration of algorithmic overfitting
+
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
+**Sophisticated** models `\(\neq\)` better. (exaggerated version below)
+
+&lt;div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"&gt; 
+&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

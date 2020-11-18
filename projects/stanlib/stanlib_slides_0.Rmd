@@ -21,10 +21,10 @@ output:
 ```{r, warning = F, message = F, echo = F}
 library(tidyverse)
 library(lubridate)
-library(ggthemes)
 library(xaringanthemer)
 load("data_ml.RData")
 ```
+
 
 
 class: inverse, center, middle, animated, fadeInRight
@@ -59,20 +59,31 @@ padding: 1em 4em 1em 4em;
 
 <div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
 
-.font90[
+.font100[
 1. Because .bluen[**we can**] (computer power, data availability, software democratization (open source!), and academic maturity).
 <div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="450px", fig.align='center'}
 knitr::include_graphics("logos.svg")
 ```
-2. Because it's **fancy** (it makes great marketing pitches because people are more convinced by .bluen[seeming sophistication]). 
+2. Because it's **fancy** (it makes great marketing pitches because people are more convinced .bluen[seeming sophistication]). 
 <div style="width: 100%;float: bottom;margin-top:15px;margin-bottom: 30px;"> 
-```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="900px", fig.align='center'}
-knitr::include_graphics("headlines.png")
+```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="500px", fig.align='center'}
+knitr::include_graphics("ai.png")
 ```
 3. Because it **works** (well... it depends - more on that soon).
 ]
 
+
+---
+# What is AI / ML?
+
+- AI refers to tools (algos, robots) which are aimed at **mimicking human cognitive functions** .font90[(and, subsequently, motor functions)].
+- One obvious application of AI is **task automation**.   
+- Nowadays, building intelligent systems requires **huge amounts of data** (which sometimes can be simulated).   
+- ML (a subfield of AI) is intended to "make sense" (i.e., **detect patterns**) of these big datasets (akin to data mining)    
+- If these patterns are .bluen[*genuine*], they can be incredibly valuable (more on that soon).
+
+$\rightarrow$ in practice, ML is very efficient for **marketers**.
 
 ---
 # ML for trading: a tale of frequencies
@@ -196,28 +207,67 @@ padding: 1em 4em 1em 4em;
 </style>
 
 
-# Factor models: pitfalls & solutions
+# Factor models: limitations
 
 
 ---
-# Factor & Quant investing: beware!
+# .font90[Factor & Quant investing] $\neq$ .font90[guaranteed success]
 <div style="width: 100%;float: bottom;margin-top:-15px;margin-bottom: 30px;"> 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="700px", fig.align='center'}
-knitr::include_graphics("FT2.png")
+knitr::include_graphics("FT.png")
 
 knitr::include_graphics("JPM.png")
-
-knitr::include_graphics("FT.png")
 ```
 
 
 
+---
+# First issue: noise! (1/2)
+
+Optimal case: low noise (stylized graph).
+
+```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 11, fig.height = 6.5 }
+library(tidyverse)
+library(ggthemes)
+set.seed(42)
+n_points <- 10^3
+x <- runif(n_points)
+y <- -x/3 + rnorm(n_points, mean = 0, sd = 0.1) + 0.1
+bind_cols(x,y) %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F) +
+  theme_economist() +
+    theme(text = element_text(size=24), aspect.ratio = 0.6) + 
+    xlab("Size") + ylab("Future return") +
+    annotate("text", x = 0.25, y = 0.33, label = "Small firms, high returns", color = "#25C845", size = 6) +
+    annotate("text", x = 0.75, y = -0.44, label = "Large firms, low returns", color = "#FE210B", size = 6) 
+
+```
+
+
+---
+# First issue: noise! (2/2)
+
+Second configuration: overwhelming noise (more realistic).
+
+```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 10, fig.height = 5.5 }
+set.seed(42)
+n_points <- 10^3
+x <- runif(n_points)
+y <- -x/20 + rnorm(n_points, mean = 0, sd = 0.1) + 0.1
+bind_cols(x,y) %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F) +
+  theme_economist() +
+    theme(text = element_text(size=24), aspect.ratio = 0.6) + xlab("Size") + ylab("Future return") +
+    annotate("text", x = 0.15, y = 0.33, label = "Small firms, high returns?", color = "#25C845", size = 6) +
+    annotate("text", x = 0.85, y = -0.33, label = "Large firms, low returns?", color = "#FE210B", size = 6) 
+  
+```
+
+.font70[In practice, things are much more complicated (many predictors, nonlinearities, etc.)]
 
 
 
 ---
-# First issue: changing environments (1/3)
+# Second issue: changing environments (1/4)
 .font90[Average returns, volatility, factor loadings, they all] **change**! .font80[(No arbitrage..)]
 
 ```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 9, fig.height = 6.5}
@@ -239,7 +289,7 @@ bind_rows(d1, d2) %>%
 
 
 ---
-# First issue: changing environments (2/3)
+# Second issue: changing environments (2/4)
 
 **value** minus **growth** (long-short) portfolios:
 
@@ -258,7 +308,7 @@ data_ml %>%
 ```
 
 ---
-# First issue: changing environments (3/3)
+# Second issue: changing environments (3/4)
 <div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 30px;"> 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="770px", fig.align='center'}
 knitr::include_graphics("scheme.svg")
@@ -266,49 +316,56 @@ knitr::include_graphics("scheme.svg")
 
 
 ---
-# Changing environments: **solutions**! 
+# Second issue: changing environments (4/4)
 
-Some tricks to handle **data drifting**:
 
-1. make sure your models evolve & react to **.bluen[new data]**! Static models are limited. **.bluen[Updating]** is key.  
-2. the **.bluen[macroeconomy]** may explain some variations.   
-**ex**: the credit spread may matter for the **size** factor. There are many ways to integrate macro indicators in predictive models.   
-3. seek **.bluen[invariance]**, at least in distributions.    
-4. rely on **.bluen[memory]**. Persistence in time-series can improve out-of-sample performance.
+Any **solutions**?
+
+- first, make sure your models evolve & react to **new data**! One natural inclination is to fix the model once & for all... that's a bad idea. **Updating** is key (though the details are far from obvious).  
+- second, think broadly. Does the **macroeconomy** help explain some variations? Stocks do not move out of nowhere... The .bluen[credit spread] may matter for the **Size** factor. There are many ways to integrate macro indicators in predictive models.
 
 
 ---
-# Second issue: overfitting 
-<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
+# Third isse: algorithmic overfitting (1/2)
+<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
+**Sophisticated** models $\neq$ better. (exaggerated version below)
 
-.font90[
-- **algorithmic overfitting**: when the models sticks too close to past patterns and is "*surprised*" when facing new patterns.  
-- **backtest overfitting**: when a quant tries tons of strategies until one seems ok (ex: passes some Sharpe ratio threshold). This is incredibly widespread! Both in money management & academia. We are all under pressure for **good results**! $\rightarrow$ this leads to **p-hacking** & false positives!
-]
+<div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
+```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 11, fig.height = 6.5 }
+set.seed(42)
+n_points <- 150
+x <- runif(n_points)
+y <- -x/20 + rnorm(n_points, mean = 0, sd = 0.1) + 0.1
+z <- bind_cols(x = x, y = y) 
+z0 <- data.frame(x = rep(0.5, 10), y = rep(0.8, 10))
+z00 <- data.frame(x = rep(0.52, 15), y = rep(0.78, 15))
+z1 <- bind_rows(z, z0, z00)
+z1 %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F, color = "red") +
+  theme_economist() +
+    theme(text = element_text(size=24), aspect.ratio = 0.6, legend.position = c(0.5, 0.15)) +
+    xlab("Size") + ylab("Future return") +
+    geom_smooth(data = z, se = F) +
+    annotate("rect", xmin = 0.48, xmax = 0.54, ymin = 0.7, ymax = 0.9, alpha = .25, color = "black", fill = "black") +
+    annotate("text", x = 0.60, y = 0.8, label = "Outliers", color = "black", size = 6) +
+    annotate("segment", x = 0.5, xend = 0.5, y = 0.08, yend = 0.38, colour = "#656666", size = 1.5, arrow=arrow()) +
+    annotate("text", x = 0.48, y = 0.43, label = "A few points push the complex model in a potentially wrong direction", color = "black", size = 6)
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="830px", fig.align='center'}
-knitr::include_graphics("Wired.png")
-knitr::include_graphics("ideas.png")
+
 ```
 
-
-
-
 ---
-# Algorithmic overfitting: **solutions** 
+# Third isse: algorithmic overfitting (2/2)
 
-
-- often, solutions are technical and algorithm-dependent. Penalization/regularization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
-- if you like sophistication, invest time in robustness checks & sensitivity analysis (HP, time windows). Do not always go for the best parameters!
+Some **solutions** to overfitting:   
+- often, they are technical and algorithm-dependent. Penalization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
 - one heuristic tip is (surprisingly): .bluen[in doubt, avoid complex models]!   
+- if you like sophistication, invest time in robustness checks & sensitivity analysis (HP, time windows)
 
 
 ---
-# Backtest overfitting: **solutions**
+# Fourth issue: backtest overfitting (1/4)
 
-0. Work out-of-sample. $\rightarrow$ rolling windows.
-1. Quant/Systematic models should be **dynamic** in backtests!
-2. Be extra careful to forward-looking **leakages**.
+Quant/Systematic models should be **dynamic** - even in backtests!
 <div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
 
 
@@ -316,26 +373,40 @@ knitr::include_graphics("ideas.png")
 knitr::include_graphics("scheme2.svg")
 ```
 
+---
+# Fourth issue: backtest overfitting (2/4)
+
+.font90[Imagine a **quant fund manager** with 5 modelling engines] (.font80[Random Forests, Boosted Trees, Simple Neural Nets, Recurrent NN, Ensemble]).   
+.font90[Say, she wishes to test 10 HP values for each family of models (that's a pretty small number to evaluate sensitivity).  
+This makes 50 combinations. Then, assume there are 4 ways to translate predictive signals into portfolio weights (equal weights of best forecasts, minimum variance, maximum Sharpe ratio, equal risk contribution).]  
+$\rightarrow$ In the end, this makes **200 options to build a strategy**. 
 
 
-
-
+.font90[.grey[And I haven't even mentioned data pre-processing.]] `r emo::ji("wink")`
 
 ---
-# Backtest overfitting: **solutions**
+# Fourth issue backtest overfitting (3/4)
 
-**Deflated Sharpe ratios**: take into account how many strategies you test!
+.font90[So the fund manager is going to **backtest** these strategies, that is, test them on data. Sadly, she only has past data at her disposal... And in the end, she is going to pick the one that works best (after robustness checks, sensitivity analyses, etc.)]
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="990px", fig.align='center'}
-knitr::include_graphics("JPM2.png")
-```
+Is this choice truly the best? Will it work well in live trading (out-of-sample)? Probably not, because the strategy is optimized on only one dataset! .font70[.grey[In factor investing, artificial data is hard to generate.]]
 
-$+$ the **false strategy** theorem.
+A rule of thumb: take the **Sharpe ratio** of the best strat and .bluen[divide it by two] to get a better estimate of what will happen.
 
 ---
-# Third issue: trust
+# Fourth issue: backtest overfitting (4/4)
+
+This relates to a crisis of .bluen[**reproducibility**]:
+
+- Academic research is plagued by the "*publish or perish*" paradigm (with a strong bias towards positive results).    
+- Likewise, money managers are pressured to craft **winning strategies**, but can only backtest on past data + lottery strats.
+
+$\rightarrow$ we are pushed towards **false positives**. We so badly want to find recipes that succeed, that we end up forgetting the framework in which we work. Often, the best strategies perform well by chance! (one lucky random trajectory of the world)
+
+---
+# Fifth issue: trust
 <div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
-Can I understand a complex model? $\rightarrow$ **XAI** (explainable AI).
+Can I understand a complex model?
 <div style="width: 100%;float: bottom;margin-top:5px;margin-bottom: 30px;"> 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="710px", fig.align='center'}
 knitr::include_graphics("XAI.svg")
@@ -369,9 +440,7 @@ If you want a review of recent advances in ML & econometrics in financial econom
 ---
 # Wrap up: key takeaways
 
-**Factor investing**:    
-- **originally**: use a few characteristics to **.bluen[explain]** returns.   
-- **now**: extract a maximum of data to **.bluen[predict]** returns.
+Factor investing aims to explain or predict financial returns with .bluen[firms characteristics]. 
 
 People tend to focus on sophistication, which sometimes does add value, but requires a huge amount of expertise. Often it is preferable to spend more time on **simple approaches** & have an integrated understanding of the models. 
 
@@ -391,22 +460,15 @@ knitr::include_graphics("quadrant2.svg")
 
 ---
 # Where to spend money?
-<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
 
 .font110[
 - **software** & **IT** (hardware) are relatively **cheap**.   
 - **data** *can* be **costly**.
-- .bluen[**human capital**] is **key**. As for competences:  
+- .bluen[**human capital**] is **key**. Good quants are expensive, but more *likely* to deliver. Bad quants are cheaper... but may end up underperforming. 
 ]
-<div style="width: 100%;float: bottom;margin-top:-20px;margin-bottom: 50px;"> 
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE, out.width="440px", fig.align='center'}
-knitr::include_graphics("venn.svg")
-```
-<div style="width: 100%;float: bottom;margin-top:-5px;margin-bottom: 50px;"> 
-
-<!--$\rightarrow$ **Time**, because it is scarce, is the most important resource.  --> 
-Genuine **understanding** models & backtests matters **A LOT**!
+$\rightarrow$ **Time**, because it is scarce, is the most important resource.   
+**Understanding** the limits & weaknesses of models & backtests matters **A LOT**!
 
 
 ---
@@ -420,29 +482,3 @@ Genuine **understanding** models & backtests matters **A LOT**!
 </center>
 
 
----
-# Illustration of algorithmic overfitting
-
-<div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"> 
-**Sophisticated** models $\neq$ better. (exaggerated version below)
-
-<div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"> 
-```{r, warning = F, message = F, echo = F, fig.align='center', fig.width = 11, fig.height = 6.5 }
-set.seed(42)
-n_points <- 150
-x <- runif(n_points)
-y <- -x/20 + rnorm(n_points, mean = 0, sd = 0.1) + 0.1
-z <- bind_cols(x = x, y = y) 
-z0 <- data.frame(x = rep(0.5, 10), y = rep(0.8, 10))
-z00 <- data.frame(x = rep(0.52, 15), y = rep(0.78, 15))
-z1 <- bind_rows(z, z0, z00)
-z1 %>% ggplot(aes(x = x, y = y)) + geom_point() + geom_smooth(se = F, color = "red") +
-  theme_economist() +
-    theme(text = element_text(size=24), aspect.ratio = 0.6, legend.position = c(0.5, 0.15)) +
-    xlab("Size") + ylab("Future return") +
-    geom_smooth(data = z, se = F) +
-    annotate("rect", xmin = 0.48, xmax = 0.54, ymin = 0.7, ymax = 0.9, alpha = .25, color = "black", fill = "black") +
-    annotate("text", x = 0.60, y = 0.8, label = "Outliers", color = "black", size = 6) +
-    annotate("segment", x = 0.5, xend = 0.5, y = 0.08, yend = 0.38, colour = "#656666", size = 1.5, arrow=arrow()) +
-    annotate("text", x = 0.48, y = 0.43, label = "A few points push the complex model in a potentially wrong direction", color = "black", size = 6)
-```
