@@ -207,7 +207,7 @@ padding: 1em 4em 1em 4em;
 # First issue: changing environments (1/3)
 .font90[Average returns, volatility, factor loadings, they all] **change**! .font80[(No arbitrage..)]
 
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-7-1.png" width="1008" style="display: block; margin: auto;" /&gt;
+&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-7-1.png" width="864" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -252,11 +252,14 @@ Some tricks to handle **data drifting**:
 ---
 # Algorithmic overfitting: **solutions** 
 
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
+&lt;img src="overfit.png" width="990px" style="display: block; margin: auto;" /&gt;
+&lt;div style="width: 100%;float: bottom;margin-top:-25px;margin-bottom: 30px;"&gt; 
+
 
 - often, solutions are technical and algorithm-dependent. Penalization/regularization for regressions, trees and neural networks takes various forms. This requires a bit of **practice**.
-- if you like sophistication, invest time in robustness checks &amp; sensitivity analysis (HP, time windows). Do not always go for the best parameters!
+- if you like **sophistication**, invest time in robustness checks &amp; sensitivity analysis (HP, time windows). But do not always go for the best parameters!
 - one heuristic tip is (surprisingly): .bluen[in doubt, avoid complex models]!   
-
 
 ---
 # Backtest overfitting: **solutions**
@@ -378,7 +381,7 @@ A genuine **understanding** models &amp; backtests matters **A LOT**!
 **Sophisticated** models `\(\neq\)` better. (exaggerated version below)
 
 &lt;div style="width: 100%;float: bottom;margin-top:25px;margin-bottom: 30px;"&gt; 
-&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="stanlib_slides_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
