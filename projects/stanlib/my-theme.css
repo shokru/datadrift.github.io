@@ -50,6 +50,11 @@ html {
 
 .title-slide .inverse .remark-slide-content {
   background-color: #FAFAFA;
+  background-image: url(data_drift_logo.svg)
+}
+
+.title-slide.remark-slide-content{
+  background-image:url(data_drift_logo.svg);
 }
 
 
