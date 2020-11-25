@@ -94,7 +94,7 @@ In **financial economics**, one central topic is to explain the profitability of
 
 The key word is *different*: in what ways are companies different? $\rightarrow$ we need to **characterize** them. To do so, we resort to .bluen[attributes]:  
 * **size** (market cap), 
-* **value** (accounting ratios), 
+* **value** (accounting ratios, "fundamentals"), 
 * **momentum** (past performance), 
 * **risk** (volatility),  
 * etc. 
@@ -236,12 +236,13 @@ n_points <- 10^3
 data_ml %>%
   mutate(year = as.factor(year(date))) %>% 
   filter(year %in% c(2007,2008,2009)) %>%
-  #group_by(date) %>%
-  #mutate(size = if_else(Mkt_Cap_12M_Usd > median(Mkt_Cap_12M_Usd), "Large", "Small")) %>%
+  group_by(year, stock_id) %>%
+  mutate(Mkt_Cap_12M_Usd = mean(Mkt_Cap_12M_Usd),
+         R1M_Usd = mean(R1M_Usd)) %>%
   ggplot(aes(x = Mkt_Cap_12M_Usd, y = R1M_Usd, color = year)) +
-  geom_point(size = 0.5, alpha = 0.5) + geom_smooth(size= 1.5, method = "lm", se = F) +
+  geom_point(size = 0.8, alpha = 0.5) + geom_smooth(size= 1.5, method = "lm", se = F) +
   theme_economist() + 
-  theme(text = element_text(size=24), aspect.ratio = 0.4) + xlab("Market Capitalization (score)") +
+  theme(text = element_text(size=21), aspect.ratio = 0.5) + xlab("Market Capitalization (Average score)") +
   coord_cartesian(xlim=c(0,1), ylim = c(-0.2,0.2)) +
   ylab("Return")
   
@@ -281,7 +282,7 @@ knitr::include_graphics("scheme.svg")
 Some tricks to handle **data drifting**:
 
 1. make sure your models evolve & react to **.bluen[new data]**! Static models are limited. **.bluen[Updating]** is key.  
-2. the **.bluen[macroeconomy]** may explain some variations.   
+2. the **.bluen[macroeconomy]** may explain some variations.    
 **ex**: the credit spread may matter for the **size** factor. There are many ways to integrate macro indicators in predictive models.   
 3. seek **.bluen[invariance]**, at least in distributions.    
 4. rely on **.bluen[memory]**. Persistence in time-series can improve out-of-sample performance.
