@@ -1,0 +1,63 @@
+---
+title: About me
+---
+<head>
+<meta charset="UTF-8">
+<title>Webpage</title>
+<meta name="Personal website of Guillaume Coqueret"/>
+</head>
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+<img src="images/gcoq.jpg" style="width:27%; border:0px solid; margin-right: 20px" align="right">
+
+I am an associate professor of Finance & Data Science at <a href="https://www.em-lyon.com/en/" target="_blank">em**lyon business school**</a>.  
+My research interests revolve around applications of **numerical methods** in various fields (**financial economics** mostly). Some of my recent work focuses on **supervised learning** and on **sustainable equity investing**. 
+
+------  
+
+#### **Academic positions**   
+
+Associate Professor of Finance, em**lyon business school** (Sept. 2018 - Present)  
+Assistant Professor of Finance, **Montpellier Business School** (Aug. 2015 - Aug. 2018)  
+Senior Quantitative Researcher, **EDHEC-Risk Institute** (Apr. 2013 - Jul. 2015)
+
+------   
+
+#### **Education**   
+
+Accreditation to supervise research, **Univ. Lyon 2** (2022)    
+Ph.D. in Finance & Applied Mathematics, **ESSEC Business School** & **Univ. Lille 1** (2008-2012)  
+Master of Science in Probability and Finance, **Univ. Paris 6** (2007-2008)    
+Master of Science in Market Finance, **Univ. Paris 1** (2005-2006)    
+Master of Science in Management, **ESSEC Business School** (2002-2007)   
+
+------   
+
+#### **Links**
+
+**LinkedIn**: <a href="https://www.linkedin.com/in/guillaumecoqueret/" target="_blank">https://www.linkedin.com/in/guillaumecoqueret/</a>    
+**SSRN**: <a href="https://www.ssrn.com/author=708190" target="_blank">https://www.ssrn.com/author=708190</a>    
+**Google Scholar**: <a href="https://scholar.google.com/citations?user=pycLjS8AAAAJ" target="_blank">https://scholar.google.com/citations?user=pycLjS8AAAAJ</a>    
+**Github**: <a href="https://github.com/shokru" target="_blank">https://github.com/shokru</a>   
+**researchgate**: <a href="https://www.researchgate.net/profile/Guillaume_Coqueret" target="_blank">https://www.researchgate.net/profile/Guillaume_Coqueret</a>    
+**ORCID**: <a href="https://orcid.org/0000-0002-1596-4086" target="_blank">https://orcid.org/0000-0002-1596-4086</a>     
+**Publons**: <a href="https://publons.com/researcher/1352687/guillaume-coqueret/" target="_blank">https://publons.com/researcher/1352687/guillaume-coqueret/</a>    
+
+
+
+------  
+
+#### **Contact** 
+em**lyon business school**   
+23, avenue Guy de Collongue  
+69130 Ecully FRANCE   
+coqueret/at/em-lyon.com  
+
+
+------  
+Updated in March 2022
+
