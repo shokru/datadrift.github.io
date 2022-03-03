@@ -25,7 +25,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/teaching/shiny/</guid>
-      <description>================ This page contains teaching material for a course on dynamic dashboards.
+      <description>This page contains teaching material for a course on dynamic dashboards.
  Sessions The links below lead to html slides and course material.
   Introduction to R/RStudio and the tidyverse (tidying with tidyr, wrangling with dplyr): slides and sample notebook in RMarkdown or in html
   Basic R instructions (matrices, dataframes, indexing, data modes): slides, sample notebook and exercise notebook
