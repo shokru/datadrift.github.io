@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.63.2" />
+
+
+<title>Tidyverse exercises - A Hugo website</title>
+<meta property="og:title" content="Tidyverse exercises - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.svg"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/research/">Research</a></li>
+    
+    <li><a href="/teaching/">Teaching</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Tidyverse exercises</h1>
+
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="songs-dataset-exercises" class="section level1">
+<h1>Songs dataset: exercises</h1>
+<pre class="r"><code>library(tidyverse) # Just to be sure it&#39;s the first thing that is done...</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.5     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>From the <strong>songs</strong> dataset:</p>
+<ol start="0" style="list-style-type: decimal">
+<li><strong>load</strong> the data.</li>
+<li><strong>find</strong> the songs with popularity (strictly) above 95.<br />
+</li>
+<li><strong>find</strong> the songs from Kanye West.<br />
+</li>
+<li><strong>create</strong> a <strong>pivot table</strong> over <strong>artists</strong> that <strong>counts</strong> how many <strong>songs</strong> they have in the dataset and then sort the result in descending order (the first line corresponds to the artist with the most songs).<br />
+</li>
+<li><strong>create</strong> a <strong>pivot table</strong> over artists that averages the popularity of their songs and sort the results in descending order (the first line corresponds to the artist that has the most popular songs on average).<br />
+</li>
+<li>in the above pivot table, the best artists are those with only one (good) song. That’s not fair! In order to take this into account, <strong>create</strong> a <strong>pivot table</strong> with the two indicators (number of songs and average popularity), filter the artists with at least 10 songs and then rank them in descending average popularity.</li>
+</ol>
+</div>
+<div id="movies-dataset-exercises" class="section level1">
+<h1>Movies dataset: exercises</h1>
+<p>From the <strong>movies</strong> dataset:</p>
+<ol start="0" style="list-style-type: decimal">
+<li><strong>load</strong> the data.</li>
+<li><strong>find</strong> the <strong>movies</strong> with <strong>imdb score</strong> strictly above 8.8 (those are the great movies).<br />
+</li>
+<li><strong>find</strong> the movies from <strong>Tim Burton</strong>.<br />
+</li>
+<li><strong>compute</strong> the number of different directors in the dataset.<br />
+</li>
+<li><strong>create</strong> a <strong>pivot table</strong> over <strong>directors</strong> that <strong>counts</strong> how many <strong>films</strong> they have in the dataset and sort the result in descending order (the first line corresponds to the director with the most films).<br />
+</li>
+<li><strong>create</strong> a <strong>pivot table</strong> over directors that averages the imdb score of their films and sort the results in descending order (the first line corresponds to the director that has the most popular films on average).<br />
+</li>
+<li>in the above pivot table, the best directors are those with only one (good) film That’s not fair! In order to take this into account, <strong>create</strong> a pivot table with the two indicators (number of songs and average popularity), filter the directors with at least 10 films and then rank them in descending average imdb score.<br />
+</li>
+<li><strong>create</strong> a <strong>new column</strong> that compute the <strong>earnings/budget ratio</strong>. Perform the same analysis as question 6. but on this ratio.</li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
