@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Teaching on A Hugo website</title>
+    <link>/teaching/</link>
+    <description>Recent content in Teaching on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/teaching/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s1_tidyverse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s1_tidyverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s2_base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s2_base/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s3_plots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s3_plots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s4_ui_server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s4_ui_server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s5_ui_layout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s5_ui_layout/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/s6_deploy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s6_deploy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/files/twitter_text_students.nb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/twitter_text_students.nb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/teaching/shiny/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coding dynamic dashboard applications (with R &amp; Shiny)</title>
+      <link>/teaching/shiny/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/shiny/</guid>
+      <description>This page contains teaching material for a course on dynamic dashboards.
+ Sessions The links below lead to html slides and course material.
+  Introduction to R/RStudio and the tidyverse (tidying with tidyr, wrangling with dplyr): slides and sample notebook in RMarkdown
+  Basic R instructions (matrices, dataframes, indexing, data modes): slides, sample notebook and exercise notebook
+  Plots (ggplot, gganimate, plotly): slides and exercises
+  Shiny 1 (User Interface &amp;amp; Server dialog): slides and exercises.</description>
+    </item>
+    
+    <item>
+      <title>Tidyverse exercises</title>
+      <link>/teaching/files/s2_exercises/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/files/s2_exercises/</guid>
+      <description>Songs dataset: exercises library(tidyverse) # Just to be sure it&amp;#39;s the first thing that is done... ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ── ## ✓ ggplot2 3.3.5 ✓ purrr 0.3.4 ## ✓ tibble 3.1.5 ✓ dplyr 1.0.7 ## ✓ tidyr 1.1.3 ✓ stringr 1.4.0 ## ✓ readr 1.4.0 ✓ forcats 0.5.1 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## x dplyr::filter() masks stats::filter() ## x dplyr::lag() masks stats::lag() From the songs dataset:</description>
+    </item>
+    
+  </channel>
+</rss>
