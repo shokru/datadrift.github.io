@@ -11,28 +11,15 @@
     
     
     <item>
-      <title>Research</title>
-      <link>/research/</link>
+      <title>About me</title>
+      <link>/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/research/</guid>
-      <description>Research   
-Books Perspectives in ESG equity investing CRC / Chapman Hall - March 2022
-Order on on the publisher’s website, Amazon (France), Amazon (US) or Amazon (UK)
-Website: http://www.esgperspectives.com
-Early working paper version on SSRN
- Machine learning for factor investing (with T. Guida) CRC / Chapman Hall, September 2020
-Order on on the publisher’s website, Amazon (France), Amazon (US) or Amazon (UK)</description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
-      <link>/teaching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/teaching/</guid>
-      <description>Teaching 
-    Course and links Institution &amp;amp; program Years    Crash course on climate change (notebook on energy-emissions-economy-environment &amp;amp; notebook on financial stakes) emlyon business school, Master in Management 2021  Machine Learning for Factor Investing emlyon business school, MSc. in Finance 2019 - present  Dynamic Dashboards with Shiny emlyon business school, Master in Management, emlyon MSc Digital Market &amp;amp; Data Science 2018-present  Machine Learning for Factor Investing Imperial College Business School, MSc.</description>
+      <guid>/</guid>
+      <description>Webpage   I am an associate professor of Finance &amp;amp; Data Science at emlyon business school.
+My research interests revolve around applications of numerical methods in various fields (financial economics mostly). Some of my recent work focuses on supervised learning and on sustainable equity investing.
+Academic positions Associate Professor of Finance, emlyon business school (Sept. 2018 - Present)
+Assistant Professor of Finance, Montpellier Business School (Aug.</description>
     </item>
     
   </channel>
