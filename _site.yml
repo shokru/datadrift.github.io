@@ -1,7 +1,0 @@
-name: "data drift technologies"
-output_dir: "."
-output:
-  html_document:
-    theme: paper
-    css: 'styles.css'
-description: "Website of data drift technologies"
